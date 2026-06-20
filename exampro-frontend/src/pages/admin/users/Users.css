@@ -1,0 +1,40 @@
+.users-container {
+
+    padding: 20px;
+}
+
+
+h2 {
+
+    color: #003366;
+}
+
+
+table {
+
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+
+th {
+
+    background-color: #003366;
+    color: white;
+}
+
+
+th,
+td {
+
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+
+tr:hover {
+
+    background-color: #f2f2f2;
+}

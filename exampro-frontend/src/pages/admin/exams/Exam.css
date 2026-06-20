@@ -1,0 +1,66 @@
+.exam-container {
+    padding: 20px;
+    margin-left: 220px;
+    min-height: 100vh;
+    background: #f4f7fc;
+}
+
+.exam-container h1 {
+    color: #003366;
+    margin-bottom: 20px;
+}
+
+.exam-container form {
+    background: white;
+    padding: 20px;
+    width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #cccccc;
+}
+
+.exam-container input,
+.exam-container select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.exam-container button {
+    background: #003366;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.exam-container button:hover {
+    background: #0055aa;
+}
+
+.exam-container table {
+    margin-top: 25px;
+    width: 100%;
+    background: white;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px #ddd;
+}
+
+.exam-container th,
+.exam-container td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.exam-container th {
+    background: #003366;
+    color: white;
+}
+
+.exam-container td button {
+    margin: 5px;
+}

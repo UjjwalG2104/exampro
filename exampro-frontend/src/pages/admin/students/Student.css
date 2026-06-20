@@ -1,0 +1,66 @@
+.student-container {
+    padding: 20px;
+    margin-left: 220px;
+    min-height: 100vh;
+    background: #f4f7fc;
+}
+
+.student-container h1 {
+    color: #003366;
+    margin-bottom: 20px;
+}
+
+.student-container form {
+    background: white;
+    padding: 20px;
+    width: 550px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #cccccc;
+}
+
+.student-container input,
+.student-container select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.student-container button {
+    background: #003366;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.student-container button:hover {
+    background: #0055aa;
+}
+
+.student-container table {
+    margin-top: 25px;
+    width: 100%;
+    background: white;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px #ddd;
+}
+
+.student-container th,
+.student-container td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.student-container th {
+    background: #003366;
+    color: white;
+}
+
+.student-container td button {
+    margin: 5px;
+}

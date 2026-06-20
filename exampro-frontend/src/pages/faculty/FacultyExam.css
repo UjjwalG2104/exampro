@@ -1,0 +1,122 @@
+.faculty-exam {
+
+    padding: 30px;
+
+    background: #f4f7fc;
+
+    min-height: 100vh;
+
+}
+
+
+.faculty-exam h1 {
+
+    color: #003366;
+
+    margin-bottom: 25px;
+
+}
+
+
+/* Form */
+
+.faculty-exam form {
+
+    background: white;
+
+    padding: 20px;
+
+    width: 400px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+
+    margin-bottom: 30px;
+
+}
+
+
+.faculty-exam input {
+
+    width: 100%;
+
+    padding: 12px;
+
+    margin-bottom: 15px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 5px;
+
+}
+
+
+.faculty-exam button {
+
+    background: #003366;
+
+    color: white;
+
+    border: none;
+
+    padding: 12px 20px;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+}
+
+
+.faculty-exam button:hover {
+
+    background: #0055aa;
+
+}
+
+
+/* Exam Cards */
+
+.exam-list {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 20px;
+
+}
+
+
+.exam-card {
+
+    width: 250px;
+
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+
+}
+
+
+.exam-card h3 {
+
+    color: #003366;
+
+}
+.exam-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.exam-actions button {
+    flex: 1;
+    padding: 8px;
+    cursor: pointer;
+}

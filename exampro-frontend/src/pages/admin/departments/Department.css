@@ -1,0 +1,70 @@
+.department-container {
+    padding: 20px;
+    margin-left: 220px;
+    min-height: 100vh;
+    background: #f4f7fc;
+}
+
+.department-container h1 {
+    color: #003366;
+    margin-bottom: 20px;
+}
+
+.department-container form {
+    background: white;
+    padding: 20px;
+    width: 450px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #cccccc;
+}
+
+.department-container input,
+.department-container textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+}
+
+.department-container textarea {
+    height: 90px;
+    resize: none;
+}
+
+.department-container button {
+    background: #003366;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.department-container button:hover {
+    background: #0055aa;
+}
+
+.department-container table {
+    margin-top: 20px;
+    width: 100%;
+    background: white;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px #ddd;
+}
+
+.department-container th,
+.department-container td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.department-container th {
+    background: #003366;
+    color: white;
+}
+
+.department-container td button {
+    margin: 5px;
+}

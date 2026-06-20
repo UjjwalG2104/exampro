@@ -1,0 +1,101 @@
+.student-dashboard {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f4f6f9;
+}
+
+
+/* Sidebar */
+.student-sidebar {
+    width: 250px;
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+}
+
+
+.student-sidebar h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+
+.student-sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+
+.student-sidebar li {
+    margin-bottom: 15px;
+}
+
+
+.student-sidebar a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+
+.student-sidebar a:hover {
+    color: #1abc9c;
+}
+
+
+/* Main Content */
+.student-content {
+    flex: 1;
+    padding: 30px;
+}
+
+
+.student-content h1 {
+    color: #2c3e50;
+}
+
+
+.student-content p {
+    font-size: 18px;
+    color: #555;
+}
+
+
+/* Dashboard Cards */
+.student-cards {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+
+.student-card {
+    width: 200px;
+    height: 120px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+/* Logout Button */
+.logout-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.logout-btn:hover {
+    background-color: #c0392b;
+}

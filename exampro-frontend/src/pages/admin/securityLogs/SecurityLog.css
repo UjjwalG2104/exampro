@@ -1,0 +1,48 @@
+.security-container {
+    padding: 20px;
+    margin-left: 220px;
+    min-height: 100vh;
+    background: #f4f7fc;
+}
+
+.security-container h1 {
+    color: #003366;
+    margin-bottom: 20px;
+}
+
+.security-container table {
+    width: 100%;
+    background: white;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px #cccccc;
+}
+
+.security-container th,
+.security-container td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.security-container th {
+    background: #003366;
+    color: white;
+}
+
+.security-container tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+.security-container button {
+    background: #cc0000;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.security-container button:hover {
+    background: #ff0000;
+}

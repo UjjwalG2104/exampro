@@ -1,0 +1,72 @@
+.session-container {
+    padding: 20px;
+    margin-left: 220px;
+    min-height: 100vh;
+    background: #f4f7fc;
+}
+
+.session-container h1 {
+    color: #003366;
+    margin-bottom: 20px;
+}
+
+.session-container form {
+    background: white;
+    width: 600px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #cccccc;
+}
+
+.session-container input,
+.session-container select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.session-container label {
+    font-weight: bold;
+}
+
+.session-container input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+}
+
+.session-container button {
+    background: #003366;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.session-container button:hover {
+    background: #0055aa;
+}
+
+.session-container table {
+    width: 100%;
+    margin-top: 25px;
+    background: white;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px #ddd;
+}
+
+.session-container th,
+.session-container td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+
+.session-container th {
+    background: #003366;
+    color: white;
+}

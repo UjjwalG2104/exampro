@@ -1,0 +1,76 @@
+.option-container {
+    padding: 20px;
+    margin-left: 220px;
+    min-height: 100vh;
+    background: #f4f7fc;
+}
+
+.option-container h1 {
+    color: #003366;
+    margin-bottom: 20px;
+}
+
+.option-container form {
+    background: white;
+    padding: 20px;
+    width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #cccccc;
+}
+
+.option-container input,
+.option-container select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.option-container label {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.option-container input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+}
+
+.option-container button {
+    background: #003366;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.option-container button:hover {
+    background: #0055aa;
+}
+
+.option-container table {
+    width: 100%;
+    margin-top: 25px;
+    background: white;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px #ddd;
+}
+
+.option-container th,
+.option-container td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+
+.option-container th {
+    background: #003366;
+    color: white;
+}
+
+.option-container td button {
+    margin: 5px;
+}

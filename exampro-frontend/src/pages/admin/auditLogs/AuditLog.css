@@ -1,0 +1,48 @@
+.audit-container {
+    padding: 20px;
+    margin-left: 220px;
+    min-height: 100vh;
+    background: #f4f7fc;
+}
+
+.audit-container h1 {
+    color: #003366;
+    margin-bottom: 20px;
+}
+
+.audit-container table {
+    width: 100%;
+    background: white;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px #cccccc;
+}
+
+.audit-container th,
+.audit-container td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.audit-container th {
+    background: #003366;
+    color: white;
+}
+
+.audit-container tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+.audit-container button {
+    background: #cc0000;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.audit-container button:hover {
+    background: #ff0000;
+}

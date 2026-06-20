@@ -1,0 +1,53 @@
+.webcam-container {
+    padding: 20px;
+    margin-left: 220px;
+    min-height: 100vh;
+    background: #f4f7fc;
+}
+
+.webcam-container h1 {
+    color: #003366;
+    margin-bottom: 20px;
+}
+
+.webcam-container table {
+    width: 100%;
+    background: white;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px #cccccc;
+}
+
+.webcam-container th,
+.webcam-container td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.webcam-container th {
+    background: #003366;
+    color: white;
+}
+
+.webcam-container tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+.webcam-container img {
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.webcam-container button {
+    background: #cc0000;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.webcam-container button:hover {
+    background: #ff0000;
+}
