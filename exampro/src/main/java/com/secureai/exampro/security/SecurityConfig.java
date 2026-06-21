@@ -112,16 +112,47 @@ public class SecurityConfig {
 
 
 
-                // Student/Admin APIs
+                // Exam Sessions — Admin, Faculty, Student
                 .requestMatchers(
-                    "/api/exam-sessions/**",
-                    "/api/student-answers/**",
-                    "/api/results/**",
-                    "/api/notifications/**",
-                    "/api/students/**"
+                    "/api/exam-sessions/**"
+                ).hasAnyAuthority(
+                    "ADMIN",
+                    "FACULTY",
+                    "STUDENT"
+                )
+
+                // Student Answers — Admin, Student
+                .requestMatchers(
+                    "/api/student-answers/**"
                 ).hasAnyAuthority(
                     "ADMIN",
                     "STUDENT"
+                )
+
+                // Results — Admin, Faculty, Student
+                .requestMatchers(
+                    "/api/results/**"
+                ).hasAnyAuthority(
+                    "ADMIN",
+                    "FACULTY",
+                    "STUDENT"
+                )
+
+                // Notifications — Admin, Faculty, Student
+                .requestMatchers(
+                    "/api/notifications/**"
+                ).hasAnyAuthority(
+                    "ADMIN",
+                    "FACULTY",
+                    "STUDENT"
+                )
+
+                // Students — Admin, Faculty
+                .requestMatchers(
+                    "/api/students/**"
+                ).hasAnyAuthority(
+                    "ADMIN",
+                    "FACULTY"
                 )
 
 
@@ -194,4 +225,4 @@ public CorsConfigurationSource corsConfigurationSource() {
         return configuration.getAuthenticationManager();
     }
 
-}           
+}

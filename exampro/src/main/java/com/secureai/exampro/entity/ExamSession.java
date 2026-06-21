@@ -47,4 +47,24 @@ public class ExamSession {
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+        if (startTime == null) {
+            startTime = LocalDateTime.now();
+        }
+        if (warningCount == null) {
+            warningCount = 0;
+        }
+        if (isTerminated == null) {
+            isTerminated = false;
+        }
+        if (isAutoSubmitted == null) {
+            isAutoSubmitted = false;
+        }
+        if (sessionStatus == null) {
+            sessionStatus = SessionStatus.STARTED;
+        }
+    }
 }

@@ -36,3 +36,13 @@
     margin: 10px 0;
 
 }
+
+.status-pass {
+    color: #1a7a16;
+    font-weight: bold;
+}
+
+.status-fail {
+    color: #cc0000;
+    font-weight: bold;
+}

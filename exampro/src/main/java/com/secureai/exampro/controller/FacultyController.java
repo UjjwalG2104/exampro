@@ -1,6 +1,7 @@
 package com.secureai.exampro.controller;
 
 import com.secureai.exampro.entity.Faculty;
+import com.secureai.exampro.repository.FacultyRepository;
 import com.secureai.exampro.service.FacultyService;
 
 import org.springframework.http.ResponseEntity;
@@ -14,9 +15,12 @@ import java.util.List;
 public class FacultyController {
 
     private final FacultyService facultyService;
+    private final FacultyRepository facultyRepository;
 
-    public FacultyController(FacultyService facultyService) {
+    public FacultyController(FacultyService facultyService,
+                             FacultyRepository facultyRepository) {
         this.facultyService = facultyService;
+        this.facultyRepository = facultyRepository;
     }
 
     // Create Faculty
@@ -43,6 +47,24 @@ public class FacultyController {
 
         return ResponseEntity.ok(
                 facultyService.getFacultyById(id));
+    }
+
+    // ✅ NEW — Get Faculty by logged-in username
+    @GetMapping("/by-username/{username}")
+    public ResponseEntity<Faculty> getFacultyByUsername(
+            @PathVariable String username) {
+
+        Faculty faculty = facultyRepository
+                .findAll()
+                .stream()
+                .filter(f -> f.getUser() != null &&
+                        username.equals(f.getUser().getUsername()))
+                .findFirst()
+                .orElseThrow(() ->
+                        new RuntimeException(
+                                "Faculty not found for username: " + username));
+
+        return ResponseEntity.ok(faculty);
     }
 
     // Update Faculty

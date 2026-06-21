@@ -41,10 +41,10 @@ export const setAuthData = (data) => {
 export const clearAuthData = () => {
 
     localStorage.removeItem("token");
-
     localStorage.removeItem("role");
-
     localStorage.removeItem("username");
+    localStorage.removeItem("studentId");
+    localStorage.removeItem("sessionId");
 
 };
 
@@ -173,6 +173,11 @@ export const getFaculties = () =>
 // Get faculty by ID
 export const getFacultyById = (id) =>
     API.get(`/faculties/${id}`);
+
+
+// Get faculty by logged-in username
+export const getFacultyByUsername = (username) =>
+    API.get(`/faculties/by-username/${username}`);
 
 
 // Create faculty

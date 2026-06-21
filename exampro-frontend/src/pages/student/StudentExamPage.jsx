@@ -1,166 +1,143 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import {
-getExamQuestionsByExamId,
-getOptionsByQuestionId
+    getExamQuestionsByExamId,
+    getOptionsByQuestionId,
+    createStudentAnswer,
+    completeExamSession
 } from "../../api/api";
+import "./StudentExam.css";
 
 function StudentExamPage() {
 
+    const { examId } = useParams();
+    const navigate = useNavigate();
 
-const { examId } = useParams();
+    const [questions, setQuestions] = useState([]);
+    const [optionsMap, setOptionsMap] = useState({});
+    const [answers, setAnswers] = useState({});
+    const [loading, setLoading] = useState(true);
+    const [submitting, setSubmitting] = useState(false);
 
-const [questions, setQuestions] = useState([]);
-const [optionsMap, setOptionsMap] = useState({});
-const [answers, setAnswers] = useState({});
-console.log(
-    "getExamQuestionsByExamId =",
-    getExamQuestionsByExamId
-);
+    useEffect(() => {
+        loadQuestions();
+    }, []);
 
-console.log(
-    "getOptionsByQuestionId =",
-    getOptionsByQuestionId
-);
+    const loadQuestions = async () => {
+        try {
+            const response = await getExamQuestionsByExamId(examId);
+            setQuestions(response.data);
 
-useEffect(() => {
-    loadQuestions();
-}, []);
-
-const loadQuestions = async () => {
-
-    try {
-
-        const response =
-            await getExamQuestionsByExamId(examId);
-
-        setQuestions(response.data);
-
-        for (const q of response.data) {
-
-            const optionResponse =
-                await getOptionsByQuestionId(
-                    q.question.questionId
-                );
-
-            setOptionsMap(prev => ({
-                ...prev,
-                [q.question.questionId]:
-                    optionResponse.data
-            }));
+            for (const q of response.data) {
+                const optRes = await getOptionsByQuestionId(q.question.questionId);
+                setOptionsMap(prev => ({
+                    ...prev,
+                    [q.question.questionId]: optRes.data
+                }));
+            }
+        } catch (error) {
+            console.error(error);
+            alert("Failed to load exam questions.");
+        } finally {
+            setLoading(false);
         }
+    };
 
-    } catch (error) {
+    const handleAnswerChange = (questionId, optionId) => {
+        setAnswers(prev => ({ ...prev, [questionId]: optionId }));
+    };
 
-        console.error(error);
-    }
-};
+    const submitExam = async () => {
+        if (!window.confirm("Are you sure you want to submit the exam?")) return;
 
-const handleAnswerChange = (
-    questionId,
-    optionId
-) => {
+        setSubmitting(true);
+        try {
+            const sessionId = localStorage.getItem("sessionId");
 
-    setAnswers(prev => ({
-        ...prev,
-        [questionId]: optionId
-    }));
-};
+            if (!sessionId) {
+                alert("Session not found. Please start the exam again.");
+                return;
+            }
 
-const submitExam = () => {
+            // Save each selected answer
+            for (const [questionId, optionId] of Object.entries(answers)) {
+                await createStudentAnswer({
+                    session: { sessionId: Number(sessionId) },
+                    question: { questionId: Number(questionId) },
+                    option: { optionId: Number(optionId) }
+                });
+            }
 
-    console.log("Selected Answers");
+            // Mark session as completed
+            await completeExamSession(sessionId);
 
-    console.log(answers);
+            alert("Exam submitted successfully!");
+            navigate("/student/results");
 
-    alert(
-        "Exam submission API will be connected next."
-    );
-};
+        } catch (error) {
+            console.error(error);
+            alert("Failed to submit exam. Please try again.");
+        } finally {
+            setSubmitting(false);
+        }
+    };
 
-return (
+    if (loading) return <h2 style={{ padding: "30px" }}>Loading Questions...</h2>;
 
-    <div style={{ padding: "30px" }}>
+    return (
+        <div style={{ padding: "30px", maxWidth: "800px", margin: "0 auto" }}>
 
-        <h1>
-            Exam ID: {examId}
-        </h1>
+            <h1>📝 Exam</h1>
+            <p>Total Questions: {questions.length}</p>
+            <p>Answered: {Object.keys(answers).length} / {questions.length}</p>
 
-        {questions.map((q, index) => (
-
-            <div
-                key={q.examQuestionId}
-                style={{
+            {questions.map((q, index) => (
+                <div key={q.examQuestionId} style={{
                     border: "1px solid #ddd",
                     margin: "15px 0",
-                    padding: "15px",
-                    borderRadius: "10px"
+                    padding: "20px",
+                    borderRadius: "10px",
+                    background: answers[q.question.questionId] ? "#f0fff0" : "#fff"
+                }}>
+                    <h3>Q{index + 1}. {q.question?.questionText}</h3>
+
+                    {(optionsMap[q.question.questionId] || []).map(option => (
+                        <div key={option.optionId} style={{ margin: "8px 0" }}>
+                            <label style={{ cursor: "pointer" }}>
+                                <input
+                                    type="radio"
+                                    name={"question-" + q.question.questionId}
+                                    value={option.optionId}
+                                    checked={answers[q.question.questionId] === option.optionId}
+                                    onChange={() => handleAnswerChange(q.question.questionId, option.optionId)}
+                                    style={{ marginRight: "8px" }}
+                                />
+                                {option.optionText}
+                            </label>
+                        </div>
+                    ))}
+                </div>
+            ))}
+
+            <button
+                onClick={submitExam}
+                disabled={submitting}
+                style={{
+                    padding: "12px 30px",
+                    marginTop: "20px",
+                    background: submitting ? "#999" : "#003366",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "8px",
+                    fontSize: "16px",
+                    cursor: submitting ? "not-allowed" : "pointer"
                 }}
             >
+                {submitting ? "Submitting..." : "✅ Submit Exam"}
+            </button>
 
-                <h3>
-                    Q{index + 1}.{" "}
-                    {q.question?.questionText}
-                </h3>
-
-                {(optionsMap[
-                    q.question.questionId
-                ] || []).map(option => (
-
-                    <div key={option.optionId}>
-
-                        <label>
-
-                            <input
-                                type="radio"
-                                name={
-                                    "question-" +
-                                    q.question.questionId
-                                }
-                                value={
-                                    option.optionId
-                                }
-                                checked={
-                                    answers[
-                                        q.question.questionId
-                                    ] ===
-                                    option.optionId
-                                }
-                                onChange={() =>
-                                    handleAnswerChange(
-                                        q.question.questionId,
-                                        option.optionId
-                                    )
-                                }
-                            />
-
-                            {" "}
-                            {option.optionText}
-
-                        </label>
-
-                    </div>
-
-                ))}
-
-            </div>
-
-        ))}
-
-        <button
-            onClick={submitExam}
-            style={{
-                padding: "10px 20px",
-                marginTop: "20px"
-            }}
-        >
-            Submit Exam
-        </button>
-
-    </div>
-);
-
-
+        </div>
+    );
 }
 
 export default StudentExamPage;

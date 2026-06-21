@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { clearAuthData } from "../../api/api";
 import "./StudentDashboard.css";
 
 function StudentDashboard() {
@@ -10,13 +11,7 @@ function StudentDashboard() {
 
 
     const handleLogout = () => {
-
-        localStorage.removeItem("token");
-        localStorage.removeItem("role");
-        localStorage.removeItem("username");
-
-        alert("Logged out successfully");
-
+        clearAuthData();
         navigate("/login");
     };
 
