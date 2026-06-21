@@ -2,7 +2,9 @@ package com.secureai.exampro.service;
 
 import com.secureai.exampro.entity.Department;
 import com.secureai.exampro.entity.Student;
+import com.secureai.exampro.entity.User;
 import com.secureai.exampro.repository.StudentRepository;
+import com.secureai.exampro.repository.UserRepository;
 
 import org.springframework.stereotype.Service;
 
@@ -12,10 +14,15 @@ import java.util.List;
 public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
+    private final UserRepository userRepository;
 
     // Constructor Injection
-    public StudentServiceImpl(StudentRepository studentRepository) {
+    public StudentServiceImpl(
+            StudentRepository studentRepository,
+            UserRepository userRepository) {
+
         this.studentRepository = studentRepository;
+        this.userRepository = userRepository;
     }
 
     // Register new student
@@ -45,7 +52,22 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findById(id)
                 .orElseThrow(() ->
                         new RuntimeException(
-                        "Student not found with ID: " + id));
+                                "Student not found with ID: " + id));
+    }
+
+    // Get student by User ID
+    @Override
+    public Student getStudentByUserId(Long userId) {
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() ->
+                        new RuntimeException(
+                                "User not found"));
+
+        return studentRepository.findByUser(user)
+                .orElseThrow(() ->
+                        new RuntimeException(
+                                "Student not found"));
     }
 
     // Get student by roll number
@@ -57,7 +79,7 @@ public class StudentServiceImpl implements StudentService {
                 .findByRollNumber(rollNumber)
                 .orElseThrow(() ->
                         new RuntimeException(
-                        "Student not found: " + rollNumber));
+                                "Student not found: " + rollNumber));
     }
 
     // Get students by department

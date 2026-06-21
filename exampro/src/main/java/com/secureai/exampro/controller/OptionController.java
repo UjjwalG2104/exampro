@@ -32,6 +32,20 @@ public class OptionController {
                 optionService.createOption(option));
     }
 
+    @GetMapping("/question/{questionId}")
+        public ResponseEntity<List<Option>> getOptionsByQuestionId( 
+                @PathVariable Long questionId) {   
+        return ResponseEntity.ok( 
+                optionService.getOptionsByQuestionId(questionId)        
+
+        
+
+    
+            
+    );
+}
+
+
 
     // Get All Options
     @GetMapping

@@ -16,6 +16,12 @@ public interface OptionService {
     // Get option by ID
     Option getOptionById(Long id);
 
+    List<Option> getOptionsByQuestionId(Long questionId);
+
+
+    
+
+
     // Get all options of a question
     List<Option> getOptionsByQuestion(Question question);
 

@@ -33,4 +33,6 @@ public interface StudentService {
 
     // Check roll number exists
     boolean existsByRollNumber(String rollNumber);
+
+    Student getStudentByUserId(Long userId);
 }

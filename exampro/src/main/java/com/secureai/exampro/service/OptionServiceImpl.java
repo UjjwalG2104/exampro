@@ -32,6 +32,15 @@ public class OptionServiceImpl implements OptionService {
         return optionRepository.findAll();
     }
 
+    @Override
+
+    public List<Option> getOptionsByQuestionId(
+        Long questionId) {
+
+        return optionRepository
+            .findByQuestionQuestionId(questionId);
+} 
+
     // Get option by ID
     @Override
     public Option getOptionById(Long id) {

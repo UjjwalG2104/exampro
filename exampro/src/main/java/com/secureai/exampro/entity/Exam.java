@@ -50,4 +50,18 @@ public class Exam {
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
+
+   @PrePersist
+   protected void onCreate() {
+
+    createdAt = LocalDateTime.now();
+
+    if (startTime == null) {
+        startTime = LocalDateTime.now();
+    }
+
+    if (examStatus == null) {
+        examStatus = ExamStatus.DRAFT;
+    }
+}
 }

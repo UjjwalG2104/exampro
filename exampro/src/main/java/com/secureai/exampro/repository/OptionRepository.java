@@ -19,6 +19,9 @@ public interface OptionRepository extends JpaRepository<Option, Long> {
     // Get all correct options
     List<Option> findByIsCorrectTrue();
 
+    List<Option> findByQuestionQuestionId(Long questionId);
+
+
     // Get all incorrect options
     List<Option> findByIsCorrectFalse();
 }

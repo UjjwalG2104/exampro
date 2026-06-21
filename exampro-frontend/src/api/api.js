@@ -26,6 +26,14 @@ export const setAuthData = (data) => {
         data.username
     );
 
+    if (data.studentId) {
+
+        localStorage.setItem(
+            "studentId",
+            data.studentId
+        );
+
+    }
 };
 
 
@@ -495,5 +503,8 @@ export const deleteWebcamLog = (id) =>
 // Get questions by exam
 export const getExamQuestionsByExamId = (examId) =>
     API.get(`/exam-questions/exam/${examId}`);
+
+export const getOptionsByQuestionId = (questionId) =>
+    API.get(`/options/question/${questionId}`);
 
 export default API;

@@ -56,11 +56,18 @@ public class SecurityConfig {
                     "/swagger-ui/**",
                     "/swagger-ui.html",
                     "/v3/api-docs/**",
+                    "/error",
 
                     // TEMP: Allow React User Management
                     "/api/users/**",
                     "/api/roles/**"
                 ).permitAll()
+
+                
+
+    
+    
+
 
 
                 // Department & Audit only ADMIN
@@ -78,30 +85,26 @@ public class SecurityConfig {
                         "ADMIN",
                         "FACULTY",
                         "STUDENT"
-                    )
+                        )
 
-
-
-    
-    
-
-    
-    
-    
-
-                // Faculty/Admin APIs
+   
                 .requestMatchers(
-                     "/api/questions/**",
-                     "/api/options/**",
-                     "/api/courses/**",
-                     "/api/faculties/**"
-                ).hasAnyAuthority(
-                    "ADMIN",
-                    "FACULTY"
-                )
+                    
+                    "/api/questions/**",
+                    "/api/options/**"
+                    ).hasAnyAuthority(
+                         "ADMIN",
+                          "FACULTY",
+                           "STUDENT"
+                        )
 
-
-            
+                 .requestMatchers(
+                    "/api/courses/**",
+                    "/api/faculties/**"
+                    ).hasAnyAuthority(
+                         "ADMIN",
+                         "FACULTY"
+                    )         
 
 
 

@@ -22,23 +22,40 @@ public class StudentAnswerServiceImpl implements StudentAnswerService {
     }
 
     // Submit student answer
-    @Override
-    public StudentAnswer submitAnswer(
-            StudentAnswer studentAnswer) {
+@Override
+public StudentAnswer submitAnswer(
+        StudentAnswer studentAnswer) {
 
-        ExamSession session = studentAnswer.getSession();
-        Question question = studentAnswer.getQuestion();
+    ExamSession session = studentAnswer.getSession();
+    Question question = studentAnswer.getQuestion();
 
-        if (studentAnswerRepository
-                .existsBySessionAndQuestion(session, question)) {
+    var existingAnswer =
+            studentAnswerRepository
+            .findBySessionAndQuestion(
+                    session,
+                    question
+            );
 
-            throw new RuntimeException(
-                    "Answer already submitted for this question!");
-        }
+    if (existingAnswer.isPresent()) {
 
-        return studentAnswerRepository.save(studentAnswer);
+        StudentAnswer answer =
+                existingAnswer.get();
+
+        answer.setOption(
+                studentAnswer.getOption()
+        );
+
+        answer.setAnswerText(
+                studentAnswer.getAnswerText()
+        );
+
+        return studentAnswerRepository
+                .save(answer);
     }
 
+    return studentAnswerRepository
+            .save(studentAnswer);
+}
     // Get all answers
     @Override
     public List<StudentAnswer> getAllAnswers() {

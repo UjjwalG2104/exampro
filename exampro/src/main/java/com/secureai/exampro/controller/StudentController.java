@@ -55,6 +55,19 @@ public class StudentController {
                 studentService.updateStudent(id, student));
     }
 
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<Student> getStudentByUserId(
+        @PathVariable Long userId) {
+
+    return ResponseEntity.ok(
+            studentService.getStudentByUserId(
+                    userId
+            )
+    )
+    ;
+}
+
     // Delete Student
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteStudent(

@@ -33,13 +33,13 @@ public class ExamSession {
     private LocalDateTime endTime;
 
     @Column(name = "warning_count")
-    private Integer warningCount;
+    private Integer warningCount = 0;
 
     @Column(name = "is_terminated")
-    private Boolean isTerminated;
+    private Boolean isTerminated = false;
 
     @Column(name = "is_auto_submitted")
-    private Boolean isAutoSubmitted;
+    private Boolean isAutoSubmitted = false;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "session_status")

@@ -1,6 +1,7 @@
 package com.secureai.exampro.entity;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "users")
@@ -14,23 +15,27 @@ public class User {
     @Column(unique = true, nullable = false)
     private String username;
 
-
+    @JsonIgnore
     @Column(nullable = false)
+
     private String password;
 
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
 
 
+    @Column(name = "full_name", length = 100)
+
     private String fullName;
+    
 
 
     private Boolean enabled = true;
 
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "role_id", nullable = false)
     private Role role;
 
 

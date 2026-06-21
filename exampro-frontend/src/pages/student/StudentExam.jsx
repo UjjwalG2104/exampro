@@ -1,46 +1,110 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getExams } from "../../api/api";
+import {
+getExams,
+createExamSession
+} from "../../api/api";
+
 import "./StudentExam.css";
 
 function StudentExam() {
 
-    const [exams, setExams] = useState([]);
-    const navigate = useNavigate();
 
-    useEffect(() => {
-        loadExams();
-    }, []);
+const [exams, setExams] = useState([]);
+const [loading, setLoading] = useState(true);
 
-    const loadExams = async () => {
+const navigate = useNavigate();
 
-        try {
+useEffect(() => {
+    loadExams();
+}, []);
 
-            const response = await getExams();
+const loadExams = async () => {
 
-            console.log("EXAMS DATA =", response.data);
+    try {
 
-            setExams(response.data);
+        const response = await getExams();
 
-        } catch (error) {
+        setExams(response.data);
 
-            console.log(error);
+    } catch (error) {
 
+        console.error(error);
+
+    } finally {
+
+        setLoading(false);
+    }
+};
+console.log("useState =", useState);
+console.log("useEffect =", useEffect);
+console.log("getExams =", getExams);
+console.log("createExamSession =", createExamSession);
+
+const startExam = async (examId) => {
+
+    try {
+
+        const studentId =
+            localStorage.getItem("studentId");
+
+        if (!studentId) {
+
+            alert(
+                "Student ID not found. Please login again."
+            );
+
+            return;
         }
 
-    };
+        const response =
+            await createExamSession({
+                exam: {
+                    examId: examId
+                },
+                student: {
+                    studentId: Number(studentId)
+                }
+            });
 
-    return (
+        localStorage.setItem(
+            "sessionId",
+            response.data.sessionId
+        );
 
-        <div className="student-exams">
+        navigate("/student/exam-page/" + examId);
 
-            <h1>📝 Available Exams</h1>
+    } catch (error) {
 
-            <h2>Total Exams: {exams.length}</h2>
+        console.error(error);
 
-            <div className="exam-list">
+        alert(
+            "Failed to start exam session"
+        );
+    }
+};
 
-                {exams.map((exam) => (
+if (loading) {
+    return <h2>Loading Exams...</h2>;
+}
+
+return (
+
+    <div className="student-exams">
+
+        <h1>📝 Available Exams</h1>
+
+        <h2>Total Exams: {exams.length}</h2>
+
+        <div className="exam-list">
+
+            {exams.length === 0 ? (
+
+                <h3>No Exams Available</h3>
+
+            ) : (
+
+                exams.map((exam) => (
 
                     <div
                         key={exam.examId}
@@ -55,9 +119,19 @@ function StudentExam() {
                             Exam ID: {exam.examId}
                         </p>
 
+                        <p>
+                            Duration: {exam.durationMinutes} Minutes
+                        </p>
+
+                        <p>
+                            Total Marks: {exam.totalMarks}
+                        </p>
+
                         <button
                             onClick={() =>
-                                navigate(`/student/exam-page/${exam.examId}`)
+                                startExam(
+                                    exam.examId
+                                )
                             }
                         >
                             Start Exam
@@ -65,13 +139,15 @@ function StudentExam() {
 
                     </div>
 
-                ))}
+                ))
 
-            </div>
+            )}
 
         </div>
 
-    );
+    </div>
+);
+
 
 }
 
