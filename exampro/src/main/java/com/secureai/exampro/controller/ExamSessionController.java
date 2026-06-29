@@ -72,6 +72,16 @@ public class ExamSessionController {
     }
 
 
+    // Add warning (tab switch detected)
+    @PutMapping("/{id}/warn")
+    public ResponseEntity<ExamSession> warnSession(
+            @PathVariable Long id) {
+
+        return ResponseEntity.ok(
+                examSessionService.warnSession(id));
+    }
+
+
     // Terminate exam due to cheating
     @PutMapping("/{id}/terminate")
     public ResponseEntity<ExamSession> terminateExam(

@@ -33,6 +33,7 @@ import FacultyDashboard from "./pages/faculty/FacultyDashboard";
 import StudentDashboard from "./pages/student/StudentDashboard";
 import StudentExam from "./pages/student/StudentExam";
 import StudentResult from "./pages/student/StudentResult";
+import StudentProfile from "./pages/student/StudentProfile";
 import FacultyExam from "./pages/faculty/FacultyExam";
 
 
@@ -194,6 +195,16 @@ function App() {
                     element={
                          <ProtectedRoute role="STUDENT">
                             <StudentResult />
+                        </ProtectedRoute>
+                    }
+                />
+
+                {/* Student Profile */}
+                <Route
+                    path="/student/profile"
+                    element={
+                        <ProtectedRoute role="STUDENT">
+                            <StudentProfile />
                         </ProtectedRoute>
                     }
                 />

@@ -358,6 +358,11 @@ export const completeExamSession = (id) =>
     API.put(`/exam-sessions/${id}/complete`);
 
 
+// Warn exam session (tab switch)
+export const warnExamSession = (id) =>
+    API.put(`/exam-sessions/${id}/warn`);
+
+
 // Terminate exam session
 export const terminateExamSession = (id) =>
     API.put(`/exam-sessions/${id}/terminate`);

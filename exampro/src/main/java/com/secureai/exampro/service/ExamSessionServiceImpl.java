@@ -125,6 +125,29 @@ public class ExamSessionServiceImpl implements ExamSessionService {
 
     // Terminate exam due to violations
     @Override
+    // Add warning — terminate if 3 warnings reached
+    @Override
+    public ExamSession warnSession(Long sessionId) {
+
+        ExamSession session = getSessionById(sessionId);
+
+        int warnings = session.getWarningCount() == null
+                ? 0 : session.getWarningCount();
+
+        warnings++;
+        session.setWarningCount(warnings);
+
+        if (warnings >= 3) {
+            session.setSessionStatus(SessionStatus.TERMINATED);
+            session.setIsTerminated(true);
+        }
+
+        return examSessionRepository.save(session);
+    }
+
+
+    // Terminate exam
+    @Override
     public ExamSession terminateExam(Long sessionId) {
 
         ExamSession session = getSessionById(sessionId);
